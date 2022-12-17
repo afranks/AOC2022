@@ -1,6 +1,10 @@
 import java.io.File
+import kotlin.system.measureTimeMillis
 
 fun main() {
+    println(drawRocks())
+}
+fun drawRocks() = measureTimeMillis {
     val lines = File("Day17.csv").useLines { it.toList() }
     val dirs = ArrayList<RockDir>()
     for(c in lines.first()) {
@@ -60,10 +64,7 @@ fun main() {
         }
         history.putIfAbsent(Triple(grid[top], shape, counter % dirs.size), hashSetOf())
         history[Triple(grid[top], shape, counter % dirs.size)]?.add(Pair(i + 1, top + 1))
-
     }
-//    grid.draw()
-
 }
 
 fun ArrayList<ArrayList<Boolean>>.draw() {
